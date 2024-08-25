@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 静态工厂实例化bean  -->
+<!--    <bean id="newsDto" class="com.tom.springnote.chapter04.t040303xmlfactorybean.NewsDtoStaticfactory"-->
+<!--          factory-method="getInstance" scope="prototype"/>-->
+
+    <!-- 非静态工厂实例化bean  -->
+    <bean id="newsDtoNonStaticfactory" class="com.tom.springnote.chapter04.t040303xmlfactorybean.NewsDtoNonStaticfactory" />
+    <bean id="nonStaticNewsDto" class="com.tom.springnote.chapter04.t040303xmlfactorybean.NewsDtoStaticfactory"
+          factory-bean="newsDtoNonStaticfactory" factory-method="getInstance" scope="prototype"/>
+
+    <!-- factorybean接口实例化bean  -->
+<!--    <bean id="factoryBeanInterfaceBean" class="com.tom.springnote.chapter04.t040303xmlfactorybean.FactoryBeanInterfaceBean"/>-->
+
+</beans>

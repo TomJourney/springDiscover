@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注册切点表达式 -->
+    <bean id="pointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="call" />
+    </bean>
+    <!-- 注册横切逻辑 -->
+    <bean id="timeCostMethodInterceptor" class="com.tom.springnote.common.aop.methodinterceptor.TimeCostMethodInterceptorImpl" />
+    <!-- 注册切面 -->
+    <bean id="advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcut" />
+        <property name="advice" ref="timeCostMethodInterceptor" />
+    </bean>
+
+    <!-- 注册 Proxy FactoryBean  scope=prototype指定原型bean，singleton指定单例bean-->
+    <bean id="robotCallTaskImplProxy" class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+        <property name="target">
+            <bean id="robotCallTaskImpl" class="com.tom.springnote.chapter09.proxyfactory.baseitfproxy.RobotCallTaskImpl" />
+        </property>
+        <property name="proxyTargetClass" value="true" /> <!-- proxyTargetClass=true表示使用CGLIB代理，否则使用JDK动态代理 -->
+        <!--proxyInterfaces 指定目标对象接口 可以省略 -->
+<!--        <property name="proxyInterfaces">-->
+<!--            <list>-->
+<!--                <value>com.tom.springnote.common.aop.ICallTask</value>-->
+<!--            </list>-->
+<!--        </property>-->
+        <!--指定多个将要织入到目标对象的切面，通知或者Interceptor拦截器-->
+        <property name="interceptorNames">
+            <list>
+                <value>advisor</value>
+            </list>
+        </property>
+    </bean>
+</beans>

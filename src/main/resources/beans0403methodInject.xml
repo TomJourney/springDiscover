@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 方法注入的实例化bean  -->
+    <bean id="methodInjectNewsDto" class="com.tom.springnote.chapter04.t0401.NewsDto" scope="prototype" />
+    <bean id="methodInjectNewsPersister" class="com.tom.springnote.chapter04.t040303xmlmethodinject.MethodInjectNewsPersister">
+        <lookup-method name="getNewsDto" bean="methodInjectNewsDto" />
+    </bean>
+
+    <!-- 实现BeanFactoryAware的方法注入  -->
+    <bean id="beanFactoryAwareNewsPersister" class="com.tom.springnote.chapter04.t040303xmlmethodinject.BeanFactoryAwareNewsPersister" />
+
+    <!-- 实现ObjectFactoryCreatingFactoryBean的方法注入 -->
+    <bean id="objectFactoryCreatingFactoryBean" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+        <property name="targetBeanName">
+            <idref bean="methodInjectNewsDto" />
+        </property>
+    </bean>
+    <bean id="objectFactoryCreatingFactoryBeanNewsPersister"
+          class="com.tom.springnote.chapter04.t040303xmlmethodinject.ObjectFactoryCreatingFactoryBeanNewsPersister" autowire="byType"/>
+
+    <!-- 实现MethodReplacer实现方法替换 -->
+    <bean id="methodReplacerNewsPersister" class="com.tom.springnote.chapter04.t040303xmlmethodinject.MethodReplacerNewsPersister">
+        <replaced-method name="persistNews" replacer="newsPersisterReplacer" />
+    </bean>
+    <bean id="newsPersisterReplacer" class="com.tom.springnote.chapter04.t040303xmlmethodinject.NewsPersisterReplacer"/>
+
+</beans>

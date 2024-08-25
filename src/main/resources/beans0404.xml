@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 为 PropertySourcesPlaceholderConfigurer 这个BeanFactoryPostProcessor 配置属性文件地址 -->
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <value>jdbc.properties</value>
+        </property>
+    </bean>
+
+    <!-- 为 PropertyOverrideConfigurer 这个BeanFactoryPostProcessor 配置重写属性文件的地址 -->
+    <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+        <property name="locations" value="ds-pool-override.properties" />
+    </bean>
+
+    <!-- 数据源bean，其中属性值通过变量指定，变量通过 BeanFactoryPostProcessor 设置值-->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="url">
+            <value>${jdbc.url}</value>
+        </property>
+        <property name="driverClassName">
+            <value>${jdbc.driverClassName}</value>
+        </property>
+        <property name="username">
+            <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc.password}</value>
+        </property>
+    </bean>
+
+    <!-- 自定义属性编辑器  -->
+    <bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <ref bean="customDatePropertEditroResigtrar" />
+            </list>
+        </property>
+    </bean>
+    <bean id="customDatePropertEditroResigtrar" class="com.tom.springnote.chapter04.t0404.CustomDatePropertEditroResigtrar">
+        <property name="customDatePropertyEditor">
+            <ref bean="customDatePropertyEditor"/>
+        </property>
+    </bean>
+    <bean id="customDatePropertyEditor" class="com.tom.springnote.chapter04.t0404.CustomDatePropertyEditor">
+        <property name="datePattern" value="yyyy-MM-dd" />
+    </bean>
+    <bean id="customDateDto" class="com.tom.springnote.chapter04.t0404.CustomDateDto">
+        <property name="date" value="2024-08-04" />
+    </bean>
+
+</beans>

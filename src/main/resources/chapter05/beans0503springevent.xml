@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 注册事件监听器 -->
+    <bean id="busiSpringEventListenerImpl"
+          class="com.tom.springnote.chapter05.chapter0503.springevent.BusiSpringEventListenerImpl" />
+    <!-- 注册事件发布器 -->
+    <bean id="busiSpringEventPublisher"
+          class="com.tom.springnote.chapter05.chapter0503.springevent.BusiSpringEventPublisher" />
+
+</beans>

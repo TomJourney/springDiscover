@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 01 静态工厂实例化bean  -->
+    <bean id="electricCar" class="com.tom.springnote.chapter04.t0403xmlfactorymethod.CarStaticFactory"
+          factory-method="getInstance" scope="prototype"/>
+
+    <!-- 02 非静态工厂实例化bean  -->
+    <bean id="carNonStaticFactory" class="com.tom.springnote.chapter04.t0403xmlfactorymethod.CarNonStaticFactoryImpl" />
+    <bean id="petrolCar" factory-bean="carNonStaticFactory" factory-method="getInstance" scope="prototype" />
+
+    <!-- 03 实现factorybean接口实例化bean  -->
+    <bean id="electricCarFactoryBean" class="com.tom.springnote.chapter04.t0403xmlfactorymethod.CarFactoryBeanImpl"
+          scope="prototype" />
+
+</beans>

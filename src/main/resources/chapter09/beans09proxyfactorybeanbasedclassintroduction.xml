@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注册切点表达式 -->
+    <bean id="pointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="call" />
+    </bean>
+    <!-- 注册横切逻辑 -->
+    <bean id="timeCostMethodInterceptorImpl" class="com.tom.springnote.common.aop.methodinterceptor.TimeCostMethodInterceptorImpl" />
+    <!-- 注册切面 -->
+    <bean id="advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcut" />
+        <property name="advice" ref="timeCostMethodInterceptorImpl"/>
+    </bean>
+
+    <!-- 注册 introduction ProxyFactoryBean  scope=prototype指定原型bean，singleton指定单例bean-->
+    <bean id="introducedRobotCallTaskImplProxy" class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+        <property name="target">
+            <bean id="robotCallTaskImpl" class="com.tom.springnote.chapter09.proxyfactory.baseitfproxy.RobotCallTaskImpl" scope="prototype" />
+        </property>
+        <property name="proxyInterfaces">
+            <list>
+                <value>com.tom.springnote.common.aop.ICallTask</value>
+                <value>com.tom.springnote.common.aop.IIntroduceMethodInvokeCounter</value>
+                <value>com.tom.springnote.common.aop.IIntroduceMethodAccessLog</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>advisor</value>
+                <value>delegatingIntroductionInterceptor</value>
+                <value>delegatingIntroductionInterceptor2</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 静态方法引入拦截器1 -->
+    <bean id="delegatingIntroductionInterceptor" class="org.springframework.aop.support.DelegatingIntroductionInterceptor" scope="prototype">
+        <constructor-arg>
+            <bean class="com.tom.springnote.common.aop.IntroduceMethodInvokeCounterImpl" />
+        </constructor-arg>
+    </bean>
+    <!-- 静态方法引入拦截器2 -->
+    <bean id="delegatingIntroductionInterceptor2" class="org.springframework.aop.support.DelegatingIntroductionInterceptor">
+        <constructor-arg>
+            <bean class="com.tom.springnote.common.aop.IntroduceMethodAccessLogImpl" />
+        </constructor-arg>
+    </bean>
+</beans>

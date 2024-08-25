@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 注册密码解密的BeanPostProcessor -->
+    <bean id="passwordDecodeBeanPostProcessor"
+          class="com.tom.springnote.chapter04.t0404beanlifecycle.customBeanPostProcessor.PasswordDecodeBeanPostProcessor">
+    </bean>
+
+    <!-- 配置bean的 init-method方法 -->
+    <!-- 配置bean的 destroy-method方法 -->
+    <!-- 注册 DBPasswordManager， 实现PasswordDecodable接口，依赖passwordDecodeBeanPostProcessor解密 -->
+    <bean id="dbConnectionPool" class="com.tom.springnote.chapter04.t0404beanlifecycle.beandestory.DBConnectionPool"
+          destroy-method="closeConnection" init-method="init">
+        <property name="jdbcService" ref="jdbcService"/>
+        <property name="password" value="encryptedPasswordText"/>
+    </bean>
+    <bean id="jdbcService" class="com.tom.springnote.chapter04.t0404beanlifecycle.beandestory.JdbcService"/>
+</beans>

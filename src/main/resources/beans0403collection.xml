@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mockCollectoinInjectObject" class="com.tom.springnote.chapter04.t040303xmlfile.MockCollectoinInjectObject">
+        <property name="listenerList">
+            <list>
+                <ref bean="baiduNewsListener"/>
+                <ref bean="baiduNewsListener2"/>
+                <ref bean="baiduNewsListener3"/>
+            </list>
+        </property>
+        <property name="listenerSet">
+            <set>
+                <ref bean="baiduNewsListener"/>
+                <ref bean="baiduNewsListener2"/>
+                <ref bean="baiduNewsListener3"/>
+            </set>
+        </property>
+        <property name="listenerMap">
+            <map>
+                <entry key="baiduNewsListener" value-ref="baiduNewsListener" />
+                <entry key="baiduNewsListener2" value-ref="baiduNewsListener2" />
+                <entry key="baiduNewsListener3" value-ref="baiduNewsListener3"/>
+            </map>
+        </property>
+        <property name="listenerProps">
+            <props>
+                <prop key="listener1">baiduNewsListener</prop>
+                <prop key="listener2">baiduNewsListener2</prop>
+                <prop key="listener3">baiduNewsListener3</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="baiduNewsListener" class="com.tom.springnote.chapter04.t0401.BaiduNewListener"  />
+    <bean id="baiduNewsListener2" class="com.tom.springnote.chapter04.t0401.BaiduNewListener"  />
+    <bean id="baiduNewsListener3" class="com.tom.springnote.chapter04.t0401.BaiduNewListener"  />
+</beans>

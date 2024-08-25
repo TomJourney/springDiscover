@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- 目标对象 （设置scope=porototype -->
+    <bean id="prototypeTarget" class="com.tom.springnote.common.aop.ManNoItfCallTask" scope="prototype" />
+
+    <!--注册原型目标对象源-->
+    <bean id="prototypeTargetSource" class="org.springframework.aop.target.PrototypeTargetSource">
+       <property name="targetBeanName" value="prototypeTarget" />
+    </bean>
+
+    <!--  使用ProxyFactoryBean织入器，通过FactoryBean 基于 PrototypeTargetSource 创建代理对象 -->
+    <bean id="prototypeTargetSourceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyTargetClass" value="true" />  <!--使用CGLIB动态代理-->
+        <property name="targetSource" ref="prototypeTargetSource" />  <!--使用原型目标对象源-->
+        <property name="interceptorNames">
+            <list>
+                <value>timeCostMethodInterceptorImpl</value>
+                <value>aroundLogMethodInterceptorImpl</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 注册横切逻辑 -->
+    <bean id="timeCostMethodInterceptorImpl" class="com.tom.springnote.common.aop.methodinterceptor.TimeCostMethodInterceptorImpl" />
+    <bean id="aroundLogMethodInterceptorImpl" class="com.tom.springnote.common.aop.methodinterceptor.AroundLogMethodInterceptorImpl" />
+</beans>

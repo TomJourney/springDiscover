@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注册横切逻辑 -->
+    <bean id="timeCostMethodInterceptorImpl" class="com.tom.springnote.common.aop.methodinterceptor.TimeCostMethodInterceptorImpl" />
+    <bean id="aroundLogMethodInterceptorImpl" class="com.tom.springnote.common.aop.methodinterceptor.AroundLogMethodInterceptorImpl" />
+
+    <!-- 目标对象 -->
+    <bean id="target1" class="com.tom.springnote.common.aop.ManNoItfCallTask" />
+    <bean id="target2" class="com.tom.springnote.common.aop.ManNoItfCallTask" />
+
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>target1</value>
+                <value>target2</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>timeCostMethodInterceptorImpl</value>
+                <value>aroundLogMethodInterceptorImpl</value>
+            </list>
+        </property>
+    </bean>
+</beans>

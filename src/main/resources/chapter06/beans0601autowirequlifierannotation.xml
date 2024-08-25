@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <!-- 注册bean -->
+    <bean id="bookAppService" class="com.tom.springnote.chapter06.autowiredqualifierannotation.AutowireQualifierBookAppService" />
+    <bean id="bookDomainService" class="com.tom.springnote.chapter06.autowiredqualifierannotation.AutowireQualifierBookDomainService" />
+    <bean id="bookDomainService2" class="com.tom.springnote.chapter06.autowiredqualifierannotation.AutowireQualifierBookDomainService" />
+    <bean id="hiltonRoomBookSupportImpl" class="com.tom.springnote.chapter06.autowiredqualifierannotation.HiltonRoomBookSupportImpl" />
+    <bean id="wandaRoomBookSupportImpl" class="com.tom.springnote.chapter06.autowiredqualifierannotation.WandaRoomBookSupportImpl" />
+    <bean id="roomDAO" class="com.tom.springnote.chapter06.autowiredqualifierannotation.RoomDAO" />
+    <bean id="roomDAO2" class="com.tom.springnote.chapter06.autowiredqualifierannotation.RoomDAO" />
+    <bean id="hotelDAO" class="com.tom.springnote.chapter06.autowiredqualifierannotation.HotelDAO" />
+    <bean id="hotelDAO2" class="com.tom.springnote.chapter06.autowiredqualifierannotation.HotelDAO" />
+
+</beans>

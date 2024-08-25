@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 注册 BeanPostProcessor -->
+    <bean id="passwordDecodeBeanPostProcessor"
+          class="com.tom.springnote.chapter04.t0404beanlifecycle.customBeanPostProcessor.PasswordDecodeBeanPostProcessor">
+    </bean>
+
+    <!-- 注册 PasswordDecodeNewsListener -->
+    <bean id="passwordDecodeNewsListener"
+          class="com.tom.springnote.chapter04.t0404beanlifecycle.customBeanPostProcessor.PasswordDecodeNewsListener">
+        <property name="password" value="password123" />
+    </bean>
+
+    <!-- 配置bean的 init-method方法 -->
+    <bean id="initMethodInitializingCache" class="com.tom.springnote.chapter04.t0404beanlifecycle.initmethod.InitMethodInitializingCache"
+          init-method="init">
+        <constructor-arg ref="cacheService" />
+    </bean>
+    <bean id="cacheService" class="com.tom.springnote.chapter04.t0404beanlifecycle.initmethod.CacheService" />
+
+    <!-- 配置bean的 destroy-method方法 -->
+    <bean id="dBConnectionPool" class="com.tom.springnote.chapter04.t0404beanlifecycle.beandestory.DBConnectionPool"
+          destroy-method="closeConnection" />
+
+</beans>

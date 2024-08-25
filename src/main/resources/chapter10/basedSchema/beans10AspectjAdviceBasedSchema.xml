@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="pointcut" expression="execution(* *.qryMsg(..)) and args(String)"/>
+        <aop:pointcut id="printLogBefore" expression="args(msgId)"/>
+        <aop:aspect id="aspect01" ref="basedSchemaMethodLogAdvice" order="100">
+            <aop:before pointcut-ref="pointcut" method="printLogBefore" />
+            <aop:after-returning pointcut-ref="pointcut" method="printLogAfterReturning" />
+            <aop:after pointcut-ref="pointcut" method="printLogAfterFinally" />
+            <aop:after-throwing pointcut-ref="pointcut" method="printLogAfterThrowing" throwing="e" />
+            <aop:around pointcut-ref="pointcut" method="printLogAroundAdvice" />
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="target" class="com.tom.springnote.chapter10.target.MessageDAO"/>
+    <bean id="basedSchemaMethodLogAdvice" class="com.tom.springnote.chapter10.basedschema.advice.BasedSchemaMethodLogAdvice" />
+</beans>

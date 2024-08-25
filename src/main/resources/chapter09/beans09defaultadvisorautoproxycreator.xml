@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注册切面织入全自动代理创建者， 实现自动织入通知 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <property name="proxyTargetClass" value="true" />
+    </bean>
+
+    <!-- 注册切点表达式 -->
+    <bean id="pointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="call" />
+    </bean>
+
+    <!-- 注册通知（横切逻辑） -->
+    <bean id="timeCostMethodInterceptorImpl" class="com.tom.springnote.common.aop.methodinterceptor.TimeCostMethodInterceptorImpl" />
+    <bean id="aroundLogMethodInterceptorImpl" class="com.tom.springnote.common.aop.methodinterceptor.AroundLogMethodInterceptorImpl" />
+
+    <!-- 目标对象 -->
+    <bean id="target1" class="com.tom.springnote.common.aop.ManNoItfCallTask" />
+    <bean id="target2" class="com.tom.springnote.common.aop.ManNoItfCallTask" />
+
+    <!-- 注册切面 -->
+    <bean id="timeCostAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcut"/>
+        <property name="advice" ref="timeCostMethodInterceptorImpl" />
+    </bean>
+    <bean id="aroundLogAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcut"/>
+        <property name="advice" ref="aroundLogMethodInterceptorImpl" />
+    </bean>
+</beans>
