@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ConfigBeanInitMethodMain {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans0404lifecycle.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("chapter04/beans0404lifecycle.xml");
         System.out.println(context.getBean("initMethodInitializingCache", InitMethodInitializingCache.class).getCache());
     }
 }

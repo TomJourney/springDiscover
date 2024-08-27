@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class LoadBeanByLazyInitMain {
 
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403lazyinit.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403lazyinit.xml");
         NewsProvider baiduNewsProvider = container.getBean("baiduNewsProvider", NewsProvider.class);
         System.out.println("NewsProvider bean实例化完成");
         baiduNewsProvider.getAndPersistNews();

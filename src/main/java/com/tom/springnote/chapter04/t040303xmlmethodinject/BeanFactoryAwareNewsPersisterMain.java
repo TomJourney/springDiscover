@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BeanFactoryAwareNewsPersisterMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403methodInject.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403methodInject.xml");
         // 实现 BeanFactoryAware
         BeanFactoryAwareNewsPersister beanFactoryAwareNewsPersister =
                 container.getBean("beanFactoryAwareNewsPersister", BeanFactoryAwareNewsPersister.class);

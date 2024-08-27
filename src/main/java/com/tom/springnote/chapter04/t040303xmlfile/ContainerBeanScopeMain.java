@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ContainerBeanScopeMain {
 
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403scope.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403scope.xml");
         System.out.println(container.getBean("singletonNewsProvider", NewsProvider.class));
         System.out.println(container.getBean("singletonNewsProvider", NewsProvider.class));
         System.out.println(container.getBean("prototypeNewsProvider", NewsProvider.class));

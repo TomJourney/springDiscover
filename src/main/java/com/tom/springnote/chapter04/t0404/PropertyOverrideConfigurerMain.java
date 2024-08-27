@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PropertyOverrideConfigurerMain {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans0404.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("chapter04/beans0404.xml");
         BasicDataSource dataSource = context.getBean("dataSource", BasicDataSource.class);
         System.out.println(dataSource.getUrl());
         System.out.println(dataSource.getUserName());

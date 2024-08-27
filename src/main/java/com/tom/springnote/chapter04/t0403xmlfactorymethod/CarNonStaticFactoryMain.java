@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class CarNonStaticFactoryMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403factorymethod.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403factorymethod.xml");
         ICar car = container.getBean("petrolCar", ICar.class);
         ICar car2 = container.getBean("petrolCar", ICar.class);
         ICar car3 = container.getBean("petrolCar", ICar.class);

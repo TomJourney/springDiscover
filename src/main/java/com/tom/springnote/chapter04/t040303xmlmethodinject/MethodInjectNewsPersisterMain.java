@@ -1,6 +1,5 @@
 package com.tom.springnote.chapter04.t040303xmlmethodinject;
 
-import com.tom.springnote.chapter04.t0401.NewsDto;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class MethodInjectNewsPersisterMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403methodInject.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403methodInject.xml");
         container.getBean("methodInjectNewsPersister", MethodInjectNewsPersister.class).persistNews();
         container.getBean("methodInjectNewsPersister", MethodInjectNewsPersister.class).persistNews();
         container.getBean("methodInjectNewsPersister", MethodInjectNewsPersister.class).persistNews();

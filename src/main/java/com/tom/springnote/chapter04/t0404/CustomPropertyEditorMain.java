@@ -1,6 +1,5 @@
 package com.tom.springnote.chapter04.t0404;
 
-import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -12,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class CustomPropertyEditorMain {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans0404.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("chapter04/beans0404.xml");
         System.out.println(context.getBean("customDateDto", CustomDateDto.class));
     }
 }

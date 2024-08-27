@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class CarStaticFactoryMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403factorymethod.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403factorymethod.xml");
         ICar electricCar = container.getBean("electricCar", ICar.class);
         ICar electricCar2 = container.getBean("electricCar", ICar.class);
         ICar electricCar3 = container.getBean("electricCar", ICar.class);

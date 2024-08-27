@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BeanWholeLifecycleMain {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans0404wholelifecycle.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("chapter04/beans0404wholelifecycle.xml");
         // 若需要注册bean销毁前回调方法，必须执行registerShutdownHook()进行注册
         context.registerShutdownHook();
         DBConnectionPool dbConnectionPool = context.getBean("dbConnectionPool", DBConnectionPool.class);

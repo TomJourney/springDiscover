@@ -1,12 +1,8 @@
 package com.tom.springnote.chapter04.t040303xmlfactorybean;
 
 import com.tom.springnote.chapter04.t0401.NewsDto;
-import com.tom.springnote.chapter04.t0401.NewsProvider;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author TomBrother
@@ -17,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class NewsDtoStaticfactoryMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403factorybean.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403factorybean.xml");
         System.out.println(container.getBean(NewsDto.class));
         System.out.println(container.getBean(NewsDto.class));
         System.out.println(container.getBean(NewsDto.class));

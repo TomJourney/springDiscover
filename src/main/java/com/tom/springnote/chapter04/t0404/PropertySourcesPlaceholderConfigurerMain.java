@@ -1,7 +1,6 @@
 package com.tom.springnote.chapter04.t0404;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.config.PropertyOverrideConfigurer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -13,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PropertySourcesPlaceholderConfigurerMain {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans0404.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("chapter04/beans0404.xml");
         BasicDataSource dataSource = context.getBean("dataSource", BasicDataSource.class);
         System.out.println(dataSource.getUrl());
         System.out.println(dataSource.getUserName());

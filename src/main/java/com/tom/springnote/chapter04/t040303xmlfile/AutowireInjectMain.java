@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AutowireInjectMain {
 
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403autowire.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403autowire.xml");
         NewsProvider baiduNewsProvider = container.getBean("baiduNewsProvider", NewsProvider.class);
         baiduNewsProvider.getAndPersistNews();
 

@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class LoadBeanFactoryByAnnotationMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans-component-scan-0401.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans-component-scan-0401.xml");
         NewsProvider baiduNewsProvider2 = container.getBean(NewsProvider.class);
         baiduNewsProvider2.getAndPersistNews();
     }

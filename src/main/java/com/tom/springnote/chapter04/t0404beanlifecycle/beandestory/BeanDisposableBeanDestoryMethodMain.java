@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BeanDisposableBeanDestoryMethodMain {
     public static void main(String[] args) {
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("beans0404lifecycle.xml");
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext("chapter04/beans0404lifecycle.xml");
         // 这行代码必须执行，手动注册bean对象销毁逻辑（registerShutdownHook()底层调用 Runtime.addShutdownHook()方法）
         context.registerShutdownHook();
         DBConnectionPool dBConnectionPool = context.getBean("dBConnectionPool", DBConnectionPool.class);

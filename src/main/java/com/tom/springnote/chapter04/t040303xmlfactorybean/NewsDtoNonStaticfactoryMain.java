@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class NewsDtoNonStaticfactoryMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0403factorybean.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0403factorybean.xml");
         System.out.println(container.getBean("nonStaticNewsDto", NewsDto.class));
         System.out.println(container.getBean("nonStaticNewsDto", NewsDto.class));
         System.out.println(container.getBean("nonStaticNewsDto", NewsDto.class));

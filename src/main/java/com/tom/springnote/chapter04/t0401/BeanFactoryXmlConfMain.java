@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BeanFactoryXmlConfMain {
     public static void main(String[] args) {
-        ApplicationContext container = new ClassPathXmlApplicationContext("beans0401.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("chapter04/beans0401.xml");
         NewsProvider baiduNewsProvider = (NewsProvider) container.getBean("baiduNewsProvider");
         NewsProvider baiduNewsProvider2 = container.getBean("baiduNewsProvider", NewsProvider.class);
         baiduNewsProvider2.getAndPersistNews();
