@@ -29,7 +29,7 @@ public class BatchUpdateViaJdbcTemplate  {
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 UserDto userDto = userDtoList.get(i);
                 ps.setString(1, userDto.getName());
-                ps.setInt(2, userDto.getId());
+                ps.setLong(2, userDto.getId());
             }
 
             @Override
@@ -66,7 +66,7 @@ public class BatchUpdateViaJdbcTemplate  {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 UserDto userDto = userDtoList.get(i);
-                ps.setInt(1, userDto.getId());
+                ps.setLong(1, userDto.getId());
             }
 
             @Override

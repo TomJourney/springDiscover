@@ -28,7 +28,7 @@ public class DaoViaJdbc implements IDao {
         Connection connection = null;
         Statement statement = null;
         try {
-            connection = getConnection();
+            connection = ConnectionUtils.getConnection();
             statement = connection.createStatement();
             return statement.executeUpdate(sql);
         } catch (SQLException e) {
@@ -53,23 +53,5 @@ public class DaoViaJdbc implements IDao {
                 }
             }
         }
-    }
-
-    public static Connection getConnection() throws SQLException {
-        Properties props = new Properties();
-        ResourceLoader resourceLoader = new DefaultResourceLoader();
-        Resource resource = resourceLoader.getResource("classpath:chapter14/springdiscover_db.properties");
-        try (InputStream dbConnConfInputStream = resource.getInputStream()) {
-            props.load(dbConnConfInputStream); // 加载数据库连接信息的 .properties 文件
-        } catch (IOException ioException) {
-            throw new RuntimeException(ioException);
-        }
-        String drivers = props.getProperty("jdbc.drivers"); //数据库驱动器
-        if (drivers != null) System.setProperty("jdbc.drivers", drivers);
-        String url = props.getProperty("jdbc.url");
-        String username = props.getProperty("jdbc.username");
-        String password = props.getProperty("jdbc.password");
-
-        return DriverManager.getConnection(url, username, password); //利用驱动管理器打开一个数据库连接
     }
 }

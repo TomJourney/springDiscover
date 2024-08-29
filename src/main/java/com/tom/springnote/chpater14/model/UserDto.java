@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @createTime 2024年08月27日 21:36:00
  */
 public class UserDto {
-    private int id;
+    private long id;
 
     private String name;
 
@@ -24,7 +24,12 @@ public class UserDto {
         // do nothing.
     }
 
-    public UserDto(int id, String name, String mobilePhone, String addr) {
+    public UserDto(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public UserDto(long id, String name, String mobilePhone, String addr) {
         this.id = id;
         this.name = name;
         this.mobilePhone = mobilePhone;
@@ -38,11 +43,11 @@ public class UserDto {
         this.remark = remark;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
