@@ -1,7 +1,7 @@
 package com.tom.springnote.chpater14.jdbctemplate.query;
 
 import com.tom.springnote.chpater14.model.UserDto;
-import com.tom.springnote.chpater14.utils.DataSourceUtils;
+import com.tom.springnote.utils.DataSourceUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;

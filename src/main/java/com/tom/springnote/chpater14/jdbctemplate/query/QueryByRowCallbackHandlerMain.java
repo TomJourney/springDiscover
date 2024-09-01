@@ -1,13 +1,7 @@
 package com.tom.springnote.chpater14.jdbctemplate.query;
 
 import com.tom.springnote.chpater14.model.UserDto;
-import com.tom.springnote.chpater14.utils.DataSourceUtils;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

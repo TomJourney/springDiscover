@@ -1,7 +1,7 @@
 package com.tom.springnote.chpater14.operationobject.query;
 
 import com.tom.springnote.chpater14.model.UserDto;
-import com.tom.springnote.chpater14.utils.DataSourceUtils;
+import com.tom.springnote.utils.DataSourceUtils;
 
 import java.util.List;
 

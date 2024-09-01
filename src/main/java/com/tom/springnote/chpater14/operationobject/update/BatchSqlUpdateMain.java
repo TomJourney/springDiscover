@@ -1,10 +1,9 @@
 package com.tom.springnote.chpater14.operationobject.update;
 
 import com.tom.springnote.chpater14.model.UserDto;
-import com.tom.springnote.chpater14.utils.DataSourceUtils;
+import com.tom.springnote.utils.DataSourceUtils;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.BatchSqlUpdate;
-import org.springframework.jdbc.object.SqlUpdate;
 
 import java.sql.Types;
 import java.util.Arrays;

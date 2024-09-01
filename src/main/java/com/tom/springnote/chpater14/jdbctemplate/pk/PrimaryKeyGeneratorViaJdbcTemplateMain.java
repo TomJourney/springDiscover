@@ -1,11 +1,5 @@
 package com.tom.springnote.chpater14.jdbctemplate.pk;
 
-import com.tom.springnote.chpater14.utils.DataSourceUtils;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
-
-import javax.sql.DataSource;
-
 /**
  * @author Tom
  * @version 1.0.0

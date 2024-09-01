@@ -1,6 +1,6 @@
 package com.tom.springnote.chpater14.jdbctemplate.namedparameterjdbctemplate;
 
-import com.tom.springnote.chpater14.utils.DataSourceUtils;
+import com.tom.springnote.utils.DataSourceUtils;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;

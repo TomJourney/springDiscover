@@ -1,6 +1,6 @@
 package com.tom.springnote.chpater14.operationobject.update;
 
-import com.tom.springnote.chpater14.utils.DataSourceUtils;
+import com.tom.springnote.utils.DataSourceUtils;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.SqlUpdate;
 
