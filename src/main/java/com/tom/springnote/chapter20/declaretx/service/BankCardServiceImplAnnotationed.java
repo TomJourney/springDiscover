@@ -4,6 +4,7 @@ import com.tom.springnote.common.model.BankCardDto;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -20,7 +21,7 @@ import java.util.List;
  * @Description TODO
  * @createTime 2024年09月01日 17:10:00
  */
-@Transactional
+@Component("bankCardServiceImplAnnotationed")
 public class BankCardServiceImplAnnotationed implements IBankCardService {
 
     private JdbcTemplate jdbcTemplate;
