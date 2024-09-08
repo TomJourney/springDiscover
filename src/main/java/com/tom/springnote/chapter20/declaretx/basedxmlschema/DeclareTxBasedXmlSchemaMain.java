@@ -23,9 +23,13 @@ public class DeclareTxBasedXmlSchemaMain {
         System.out.println(bankCardServiceProxy.queryById(1001L));
 
         // 新增
-        List<BankCardDto> bankCardDtos = List.of(
-                BankCardDto.newBankCardDto(1006L, "1006", new BigDecimal("1006"), "备注1006")
-                , BankCardDto.newBankCardDto(1007L, "1007", new BigDecimal("1007"), "备注1007"));
-        bankCardServiceProxy.saveBankCard(bankCardDtos);
+        saveBankCard(bankCardServiceProxy, 2003);
+        saveBankCard(bankCardServiceProxy, 2001);
+    }
+
+    private static void saveBankCard(IBankCardService bankCardServiceProxy, long id) {
+        String idStr = String.valueOf(id);
+        bankCardServiceProxy.saveByPropagation(
+                List.of(BankCardDto.newBankCardDto(id, idStr, new BigDecimal(idStr), "备注" + idStr)));
     }
 }

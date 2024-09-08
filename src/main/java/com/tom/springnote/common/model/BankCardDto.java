@@ -28,6 +28,15 @@ public class BankCardDto {
         return bankCardDto;
     }
 
+    public static BankCardDto newBankCardDto(Long id) {
+        BankCardDto bankCardDto = new BankCardDto();
+        bankCardDto.id = id;
+        bankCardDto.cardNo = String.valueOf(id);
+        bankCardDto.balance = new BigDecimal(id);
+        bankCardDto.remark = "备注" + id;
+        return bankCardDto;
+    }
+
     public Long getId() {
         return id;
     }

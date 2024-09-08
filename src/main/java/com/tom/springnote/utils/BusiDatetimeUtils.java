@@ -14,8 +14,15 @@ public class BusiDatetimeUtils {
 
     private static final DateTimeFormatter YYYYMMDD_HHMMSSS_SSS_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
+    private static final DateTimeFormatter YYYYMMDD_HHMMSSS_NO_SEPARATOR_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
     public static String getNowText() {
         return YYYYMMDD_HHMMSSS_SSS_FORMATTER.format(LocalDateTime.now());
+    }
+
+
+    public static Long getCurYyyyMmDdHhMmSs() {
+        return Long.parseLong(YYYYMMDD_HHMMSSS_NO_SEPARATOR_FORMATTER.format(LocalDateTime.now()));
     }
 
     private BusiDatetimeUtils() {

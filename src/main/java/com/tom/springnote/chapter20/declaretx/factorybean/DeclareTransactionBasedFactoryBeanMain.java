@@ -1,6 +1,5 @@
 package com.tom.springnote.chapter20.declaretx.factorybean;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.tom.springnote.chapter20.declaretx.service.IBankCardService;
 import com.tom.springnote.common.model.BankCardDto;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -28,7 +27,7 @@ public class DeclareTransactionBasedFactoryBeanMain {
         List<BankCardDto> bankCardDtos = List.of(
                 BankCardDto.newBankCardDto(1004L, "1004", new BigDecimal("1004"), "备注1004")
                 , BankCardDto.newBankCardDto(1005L, "1005", new BigDecimal("1005"), "备注1005"));
-        bankCardServiceProxy.saveBankCard(bankCardDtos);
+        bankCardServiceProxy.saveByPropagation(bankCardDtos);
 
         TransactionAttributeSourceEditor b;
     }

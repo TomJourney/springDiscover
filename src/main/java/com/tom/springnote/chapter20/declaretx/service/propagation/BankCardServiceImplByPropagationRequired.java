@@ -1,9 +1,16 @@
-package com.tom.springnote.chapter20.declaretx.service;
+package com.tom.springnote.chapter20.declaretx.service.propagation;
 
+import com.tom.springnote.chapter20.declaretx.service.AbstractBankCardService;
+import com.tom.springnote.chapter20.declaretx.service.IBankCardService;
 import com.tom.springnote.common.model.BankCardDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.sql.PreparedStatement;
@@ -18,32 +25,27 @@ import java.util.List;
  * @Description TODO
  * @createTime 2024年09月01日 17:10:00
  */
-public class BankCardServiceImpl extends AbstractBankCardService {
+@Component("BankCardServiceImplByPropagationRequired")
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+public class BankCardServiceImplByPropagationRequired extends AbstractBankCardService {
 
     private JdbcTemplate jdbcTemplate;
 
-    public BankCardServiceImpl(JdbcTemplate jdbcTemplate) {
+    @Autowired
+    @Qualifier("bankCardServiceImplByPropagationRequiredAndNew")
+    private IBankCardService bankCardServiceImplByPropagationRequiredAndNew;
+
+    public BankCardServiceImplByPropagationRequired(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public BankCardDto queryById(Long id) {
-        String sql = "select id, card_no, balance, remark from bank_card_tbl where id = ?";
-        return jdbcTemplate.queryForObject(sql, new RowMapper<>() {
-            @Override
-            public BankCardDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-                BankCardDto bankCardDto = new BankCardDto();
-                bankCardDto.setId(rs.getLong(1));
-                bankCardDto.setCardNo(rs.getString(2));
-                bankCardDto.setBalance(rs.getBigDecimal(3));
-                bankCardDto.setRemark(rs.getString(4));
-                return bankCardDto;
-            }
-        }, id);
+    public BankCardDto saveAndQryByPropagation(BankCardDto bankCardDto) {
+        this.doSaveBankCard(List.of(bankCardDto));
+        return bankCardServiceImplByPropagationRequiredAndNew.queryById(bankCardDto.getId());
     }
 
-    @Override
-    public void saveByPropagation(List<BankCardDto> bankCardDtoList) {
+    private void doSaveBankCard(List<BankCardDto> bankCardDtoList) {
         if (CollectionUtils.isEmpty(bankCardDtoList)) {
             return;
         }

@@ -17,7 +17,9 @@ public interface IBankCardService {
 
     BankCardDto queryByNo(String cardNo);
 
-    void saveBankCard(List<BankCardDto> bankCardDto);
+    void saveByPropagation(List<BankCardDto> bankCardDtoList);
+
+    BankCardDto saveAndQryByPropagation(BankCardDto bankCardDto);
 
     void updateBankCard(BankCardDto bankCardDto);
 

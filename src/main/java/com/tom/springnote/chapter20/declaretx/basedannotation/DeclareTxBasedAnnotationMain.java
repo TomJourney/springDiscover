@@ -3,9 +3,8 @@ package com.tom.springnote.chapter20.declaretx.basedannotation;
 import com.tom.springnote.chapter20.declaretx.service.IBankCardService;
 import com.tom.springnote.common.model.BankCardDto;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.TransactionStatus;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -20,13 +19,13 @@ public class DeclareTxBasedAnnotationMain {
         ClassPathXmlApplicationContext container =
                 new ClassPathXmlApplicationContext("chapter20/factorybean/DeclareTxBasedAnnotation.xml");
         IBankCardService bankCardServiceProxy = container.getBean("bankCardServiceImplAnnotationed", IBankCardService.class);
-        // 查询
-        System.out.println(bankCardServiceProxy.queryById(1001L));
 
         // 新增
-        List<BankCardDto> bankCardDtos = List.of(
-                BankCardDto.newBankCardDto(1010L, "1010", new BigDecimal("1010"), "备注1010")
-                , BankCardDto.newBankCardDto(1020L, "1020", new BigDecimal("1020"), "备注1020"));
-        bankCardServiceProxy.saveBankCard(bankCardDtos);
+        bankCardServiceProxy.saveByPropagation(List.of(BankCardDto.newBankCardDto(3001L)));
+        TransactionStatus a ;
+    }
+
+    private void f1() {
+
     }
 }
