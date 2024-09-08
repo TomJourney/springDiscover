@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tom.springnote.chapter20mybaits.dao.bankcard">
+
+    <select id="qryBankCardById" resultType="com.tom.springnote.common.model.BankCardDto">
+        select id, card_no, balance, remark
+          from bank_card_tbl where id = #{id}
+    </select>
+
+    <insert id="insertBankCard">
+        insert into bank_card_tbl (id, card_no, balance, remark)
+        values (#{id}, #{cardNo}, #{balance}, #{remark})
+    </insert>
+</mapper>
