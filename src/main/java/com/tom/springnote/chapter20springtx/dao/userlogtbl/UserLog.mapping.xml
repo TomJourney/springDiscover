@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tom.springnote.chapter20springtx.dao.userlogtbl.userlog">
+
+
+    <insert id="insertUserLog" parameterType="com.tom.springnote.common.model.UserLogDto">
+        INSERT
+          INTO user_log_tbl
+               (
+                 id
+                 , user_id
+                 , log_info)
+        VALUES
+               (
+                 #{id}
+                 , #{userId}
+                 , #{logInfo}
+               )
+    </insert>
+</mapper>

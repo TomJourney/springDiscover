@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tom.springnote.chapter20springtx.dao.usertbl.user">
+
+
+    <select id="qryUserById" resultType="com.tom.springnote.common.model.UserDto">
+        SELECT id, name, mobile_phone, addr, remark
+        FROM user_tbl where id = #{id}
+    </select>
+
+    <insert id="insertUser" parameterType="com.tom.springnote.common.model.UserDto">
+        INSERT INTO user_tbl
+        (id, name, mobile_phone, addr, remark)
+        VALUES(#{id}, #{name}, #{mobilePhone}, #{addr}, #{remark})
+    </insert>
+
+</mapper>
