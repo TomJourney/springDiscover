@@ -33,7 +33,7 @@ public class SpringTxManagerByRequiredRollback {
         // 保存用户
         userService.insertUser(userDto);
         // 保存用户日志
-        userLogService.insertUserLog(UserLogDto.newUserLogDto(BusiDatetimeUtils.getCurYyyyMmDdHhMmSs(), userDto.getId(), "新增用户"));
+//        userLogService.insertUserLog(UserLogDto.newUserLogDto(BusiDatetimeUtils.getCurYyyyMmDdHhMmSs(), userDto.getId(), "新增用户"));
         // 查询日志
         UserDto result = userService.qryUserById(userDto.getId());
         System.out.println("====== SpringTxManagerByRequiredCallSupportsRollback#addWithLog() end");
