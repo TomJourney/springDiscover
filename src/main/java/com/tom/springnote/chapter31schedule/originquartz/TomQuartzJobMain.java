@@ -1,4 +1,4 @@
-package com.tom.springnote.chapter31.originquartz;
+package com.tom.springnote.chapter31schedule.originquartz;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;

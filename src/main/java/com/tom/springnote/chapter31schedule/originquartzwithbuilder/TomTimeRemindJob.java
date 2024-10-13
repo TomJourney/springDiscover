@@ -1,8 +1,7 @@
-package com.tom.springnote.chapter31.originquartzwithbuilder;
+package com.tom.springnote.chapter31schedule.originquartzwithbuilder;
 
 import com.tom.springnote.utils.BusiDatetimeUtils;
 import org.quartz.Job;
-import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 

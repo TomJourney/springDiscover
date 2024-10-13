@@ -1,4 +1,4 @@
-package com.tom.springnote.chapter31.originquartz;
+package com.tom.springnote.chapter31schedule.originquartz;
 
 import com.tom.springnote.utils.BusiDatetimeUtils;
 import org.quartz.Job;
