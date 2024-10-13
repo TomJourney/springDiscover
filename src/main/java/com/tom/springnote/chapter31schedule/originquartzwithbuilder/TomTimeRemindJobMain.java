@@ -30,7 +30,7 @@ public class TomTimeRemindJobMain {
                 .build();
 
         // 立即触发作业执行，每5秒重复一次
-        SimpleTrigger simpleTrigger = TriggerBuilder.newTrigger()
+        Trigger simpleTrigger = TriggerBuilder.newTrigger()
                 .withIdentity("tomTrigger01", "tomTrigger01Group")
                 .startNow()
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(5).repeatForever())

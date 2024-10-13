@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 通过 JobDetailFactoryBean 注册JobDetail -->
+    <bean id="tomJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="tomJob" />
+        <property name="group" value="tomJobGroup" />
+        <property name="jobClass" value="com.tom.springnote.chapter31schedule.springquartz.TomSpringQuartzJobBean" />
+        <property name="durability" value="true" />
+        <property name="description" value="tomJobDetail" />
+        <property name="jobDataMap">
+            <map>
+                <entry key="message" value="hello world" />
+                <entry key="city" value="chengdu" />
+            </map>
+        </property>
+    </bean>
+
+    <!-- 通过 SimpleTriggerFactoryBean 注册触发器 -->
+    <bean id="tomSimpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="name" value="tomTrigger" />
+        <property name="group" value="tomTriggerGroup" />
+        <property name="jobDetail" ref="tomJobDetail" />
+        <property name="repeatInterval" value="5000" /> <!-- 单位毫秒，每5秒执行1次-->
+        <property name="repeatCount" value="-1" />  <!-- -1表示永远重复 -->
+    </bean>
+
+    <!-- 通过 CronTriggerFactoryBean 注册触发器 -->
+    <bean id="tomCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="tomCronTrigger" />
+        <property name="group" value="tomCronTriggerGroup" />
+        <property name="jobDetail" ref="tomJobDetail" />
+        <property name="cronExpression" value="*/3 * * * * ?" /> <!-- 每3秒执行1次-->
+    </bean>
+
+    <!-- 通过SchedulerFactoryBean注册scheduler -->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers"> <!-- 可以装配多个触发器，当然，日常开发1个足够 -->
+            <list>
+                <ref bean="tomSimpleTrigger" />
+                <ref bean="tomCronTrigger" />
+            </list>
+        </property>
+    </bean>
+</beans>

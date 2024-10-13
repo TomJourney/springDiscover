@@ -21,7 +21,6 @@ public class TomQuartzJobMain {
     public static void main(String[] args) throws Exception {
         executeScheduleJob();
     }
-
     private static void executeScheduleJob() throws ParseException, SchedulerException {
         // 新建触发器
         SimpleTriggerImpl simpleTrigger =
