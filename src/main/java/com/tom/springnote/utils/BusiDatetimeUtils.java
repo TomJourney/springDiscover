@@ -1,7 +1,9 @@
 package com.tom.springnote.utils;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * @author Tom
@@ -23,6 +25,11 @@ public class BusiDatetimeUtils {
 
     public static Long getCurYyyyMmDdHhMmSs() {
         return Long.parseLong(YYYYMMDD_HHMMSSS_NO_SEPARATOR_FORMATTER.format(LocalDateTime.now()));
+    }
+
+    public static Date timeAfterSecond(long afterSecond) {
+        LocalDateTime timeAfterSecond = LocalDateTime.now().plusSeconds(afterSecond);
+        return Date.from(timeAfterSecond.atZone(ZoneId.systemDefault()).toInstant());
     }
 
     private BusiDatetimeUtils() {
