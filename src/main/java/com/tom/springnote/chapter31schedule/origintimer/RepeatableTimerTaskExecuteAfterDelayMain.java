@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * @Description TODO
  * @createTime 2024年10月16日 06:38:00
  */
-public class TimerTaskOnceExecuteAtGivenTime {
+public class RepeatableTimerTaskExecuteAfterDelayMain {
     public static void main(String[] args) {
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -24,12 +24,12 @@ public class TimerTaskOnceExecuteAtGivenTime {
         // 通过jdk 定时器执行调度任务
         Timer timer = new Timer();
         System.out.println("当前时间=" + BusiDatetimeUtils.getNowText());
-        // 在给定时间点（当前时间加5秒的时间）执行调度任务，仅执行1次
-        timer.schedule(timerTask, BusiDatetimeUtils.timeAfterSecond(5));
+        // 在给定延迟时间(5s)之后执行调度任务，间隔2秒重复执行
+        timer.schedule(timerTask, 5000, 2000);
         System.out.println("after timer.schedule()新增调度任务之后");
-
+        // 取消
         try {
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(10); // 睡眠10s后关闭定时器，以便调度任务可以重复执行
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
