@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 注册调度任务 -->
+    <bean id="scheduledExecutorTask" class="org.springframework.scheduling.concurrent.ScheduledExecutorTask">
+        <constructor-arg index="0">
+            <bean class="com.tom.springnote.chapter31schedule.springscheduletask.TomScheduledTask"/>
+        </constructor-arg>
+        <constructor-arg index="1" value="1000" /> <!--延迟设置-->
+        <constructor-arg index="2" value="2000" /> <!--周期设置-->
+        <constructor-arg index="3" value="true" /> <!--是否固定频率调度-->
+    </bean>
+
+    <!-- 注册线程工厂 -->
+    <bean id="tomThreadFactory" class="com.tom.springnote.chapter31schedule.springexecutor.TomThreadFactory" />
+
+    <!-- 通过 scheduledExecutorFactoryBean -->
+    <bean id="scheduledExecutorFactoryBean" class="org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean">
+        <property name="poolSize" value="2"/>
+        <property name="threadFactory" ref="tomThreadFactory" />
+        <property name="scheduledExecutorTasks">
+            <list>
+                <ref bean="scheduledExecutorTask" />
+            </list>
+        </property>
+    </bean>
+
+</beans>
