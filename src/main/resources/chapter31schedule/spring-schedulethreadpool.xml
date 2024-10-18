@@ -6,12 +6,12 @@
 
     <!-- 注册调度任务 -->
     <bean id="scheduledExecutorTask" class="org.springframework.scheduling.concurrent.ScheduledExecutorTask">
-        <constructor-arg index="0">
+        <property name="runnable">
             <bean class="com.tom.springnote.chapter31schedule.springscheduletask.TomScheduledTask"/>
-        </constructor-arg>
-        <constructor-arg index="1" value="1000" /> <!--延迟设置-->
-        <constructor-arg index="2" value="2000" /> <!--周期设置-->
-        <constructor-arg index="3" value="true" /> <!--是否固定频率调度-->
+        </property>
+        <property name="delay" value="1000" /> <!--延迟设置-->
+        <property name="period" value="2000" /> <!--周期设置-->
+        <property name="fixedRate" value="true" /> <!--是否固定频率调度-->
     </bean>
 
     <!-- 注册线程工厂 -->

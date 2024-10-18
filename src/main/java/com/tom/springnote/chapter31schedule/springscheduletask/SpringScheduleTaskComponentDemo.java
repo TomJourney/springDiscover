@@ -31,5 +31,13 @@ public class SpringScheduleTaskComponentDemo {
         ScheduledExecutorFactoryBean scheduledExecutorFactoryBean;
 
         ScheduledExecutorTask scheduledExecutorTask;
+
+        TaskExecutor taskExecutor;
+
+        SimpleAsyncTaskExecutor simpleAsyncTaskExecutor;
+
+        ConcurrentTaskExecutor concurrentTaskExecutor;
+
+        ThreadPoolTaskExecutor threadPoolTaskExecutor;
     }
 }
