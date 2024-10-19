@@ -1,9 +1,16 @@
 package com.tom.springnote.chapter31schedule.springofficial;
 
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.SyncTaskExecutor;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.TriggerContext;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.concurrent.*;
 import org.springframework.scheduling.support.CronTrigger;
+import org.springframework.scheduling.support.PeriodicTrigger;
+
+import java.util.concurrent.Flow;
 
 /**
  * @author Tom
@@ -14,11 +21,19 @@ import org.springframework.scheduling.support.CronTrigger;
  */
 public class SpringOfficialComponentDemo {
 
-    TaskScheduler taskScheduler;
+    DefaultManagedTaskScheduler defaultManagedTaskScheduler;
 
-    Trigger trigger;
+    ThreadPoolTaskScheduler threadPoolTaskScheduler;
 
-    TriggerContext triggerContext;
+    ConcurrentTaskScheduler concurrentTaskScheduler;
 
-    CronTrigger cronTrigger;
+    SimpleAsyncTaskScheduler simpleAsyncTaskScheduler;
+
+
+    public static ThreadPoolTaskScheduler buildThreadPoolTaskScheduler() {
+        ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+        threadPoolTaskScheduler.initialize();
+        return threadPoolTaskScheduler;
+    }
+
 }

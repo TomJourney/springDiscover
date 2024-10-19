@@ -6,15 +6,17 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd" >
 
-    <!-- 注册bean到spring容器，一般该bean中被@Scheduled标注的方法被调度执行 -->
     <bean class="com.tom.springnote.chapter31schedule.springofficial.task.TomDiyTask"/>
 
     <!-- task:annotation-driven元素 开启对@Async与@Scheduled注解标注的springbean的探测
     如果存在被@Async与@Scheduled标注的类或方法，则spring生成一个异步执行被标注方法的代理 -->
     <task:annotation-driven scheduler="myScheduler"/>
 
-    <!-- task:scheduler元素 定义一个 ThreadPoolTaskScheduler 类型的线程池任务调度器实例-->
-    <!-- 注册ThreadPoolTaskScheduler 实例，不一定用 task:scheduler元素，可以自定义 -->
+    <!-- task:scheduler元素 定义一个ThreadPoolTaskScheduler类型的线程池任务调度器实例-->
     <task:scheduler id="myScheduler" pool-size="10"  />
+
+     <!--task:executor元素 定义一个ThreadPoolTaskExecutor类型的线程池任务执行器实例-->
+    <!--<task:executor id="myExecutor" pool-size="5" queue-capacity="100" keep-alive="0" rejection-policy="ABORT"  />-->
+
 
 </beans>

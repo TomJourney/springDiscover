@@ -1,6 +1,9 @@
 package com.tom.springnote.chapter31schedule.springofficial;
 
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Tom
@@ -17,7 +20,12 @@ public class TaskExecutorExample {
             this.message = message;
         }
         public void run() {
-            System.out.println(message);
+            System.out.println("线程id=" + Thread.currentThread().getId() + ", message=" + message);
+            try {
+                TimeUnit.MILLISECONDS.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -30,5 +38,22 @@ public class TaskExecutorExample {
         for(int i = 0; i < 25; i++) {
             taskExecutor.execute(new MessagePrinterTask("Message" + i));
         }
+    }
+    // main函数： 案例执行入口
+    public static void main(String[] args) {
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = buildThreadPoolTaskExecutor();
+        new TaskExecutorExample(threadPoolTaskExecutor).printMessages();
+        threadPoolTaskExecutor.shutdown();
+    }
+    private static ThreadPoolTaskExecutor buildThreadPoolTaskExecutor() {
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        // 设置属性前，必须先调用initialize()初始化Executor，实际底层调用 ThreadPoolTaskExecutor#initializeExecutor()
+        threadPoolTaskExecutor.initialize();
+        threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true); // 等待任务执行完成后再关闭执行器
+        threadPoolTaskExecutor.setCorePoolSize(2);
+        threadPoolTaskExecutor.setMaxPoolSize(3);
+        threadPoolTaskExecutor.setKeepAliveSeconds(0);
+        threadPoolTaskExecutor.setQueueCapacity(100);
+        return threadPoolTaskExecutor;
     }
 }
