@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd" >
+
+    <!-- 使用 JobDetailFactoryBean 注册 JobDetail实例；其中DiyQuartzJob必须是Job的子类 -->
+    <bean id="simpleJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.tom.springnote.chapter31schedule.springofficial.quartz.DiyQuartzJob" />
+    </bean>
+
+    <!-- 使用 MethodInvokingJobDetailFactoryBean 注册JobDetail实例，-->
+    <bean id="diyCommonJob" class="com.tom.springnote.chapter31schedule.springofficial.quartz.DiyCommonJob" />
+    <bean id="diyCommonJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="diyCommonJob" /> <!-- diyCommonJob无需是Job的子类 -->
+        <property name="targetMethod" value="printNow" /> <!-- printNow方法是调度任务执行的业务逻辑 -->
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <!-- 注册触发器（定义触发规则） -->
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="simpleJobDetail"/>
+        <property name="startDelay" value="1000"/> <!--初始延时为1s-->
+        <property name="repeatInterval" value="2000"/> <!--每2s执行1次-->
+    </bean>
+
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="diyCommonJobDetail"/>
+        <property name="cronExpression" value="*/5 * * * * ?" /> <!-- cron表达式定义为每5s执行1次 -->
+    </bean>
+
+    <!-- 使用触发器列表装配SchedulerFactoryBean -->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+                <ref bean="simpleTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

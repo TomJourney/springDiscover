@@ -16,7 +16,7 @@ public class TomScheduledTask implements Runnable {
     public void run() {
         System.out.printf("开始： 线程id=%s 当前时间=%s \n", Thread.currentThread().getId(), BusiDatetimeUtils.getNowText());
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(4); // 睡眠4s 模拟业务逻辑处理耗时4s
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
