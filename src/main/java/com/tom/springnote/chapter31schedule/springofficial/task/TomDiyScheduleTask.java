@@ -18,13 +18,13 @@ public class TomDiyScheduleTask {
     public void diySchedule() {
         System.out.printf("TomDiyTask#diySchedule(): 线程id=%s 当前时间=%s \n", Thread.currentThread().getId(), BusiDatetimeUtils.getNowText());
         try {
-            TimeUnit.SECONDS.sleep(3);
+//            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(1); // 睡眠1s
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
     public void diySchedule2() {
         System.out.printf("TomDiyTask#diySchedule2(): 线程id=%s 当前时间=%s \n", Thread.currentThread().getId(), BusiDatetimeUtils.getNowText());
         try {
