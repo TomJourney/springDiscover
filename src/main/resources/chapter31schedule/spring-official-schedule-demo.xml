@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd" >
 
-    <bean class="com.tom.springnote.chapter31schedule.springofficial.task.TomDiyTask"/>
+    <bean class="com.tom.springnote.chapter31schedule.springofficial.task.TomDiyScheduleTask"/>
 
     <!-- task:annotation-driven元素 开启对@Async与@Scheduled注解标注的springbean的探测
     如果存在被@Async与@Scheduled标注的类或方法，则spring生成一个异步执行被标注方法的代理 -->
