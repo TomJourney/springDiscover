@@ -15,13 +15,13 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class JavaBasedContainerUsingSeveralJavaConfigMain {
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        System.out.println("before register()");
-        context.register(AppConfig00.class, AppConfig02.class);
-        System.out.println("after register()");
-        context.refresh();
-        System.out.println("after refresh()");
-        context.getBean(HelloService.class).sayHello("Musk");
-        context.getBean(HelloService02.class).sayHello("Trump");
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+//        System.out.println("before register()");
+//        context.register(AppConfig00.class, AppConfig02.class);
+//        System.out.println("after register()");
+//        context.refresh();
+//        System.out.println("after refresh()");
+//        context.getBean(HelloService.class).sayHello("Musk");
+//        context.getBean(HelloService02.class).sayHello("Trump");
     }
 }

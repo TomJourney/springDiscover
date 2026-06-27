@@ -18,7 +18,7 @@ public class DaoViaJdbcTemplate {
     public Integer update(String sql) {
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(DataSourceUtils.getDataSource());
-        StatementCallback<Integer> statementCallback = new StatementCallback<>() {
+        StatementCallback<Integer> statementCallback = new StatementCallback<Integer>() {
             @Override
             public Integer doInStatement(Statement stmt) throws SQLException {
                 return stmt.executeUpdate(sql);

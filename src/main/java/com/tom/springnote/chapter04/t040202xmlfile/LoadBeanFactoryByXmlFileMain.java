@@ -23,7 +23,7 @@ public class LoadBeanFactoryByXmlFileMain {
     
     public static BeanFactory bindViaXmlFile(BeanDefinitionRegistry beanDefinitionRegistry) {
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanDefinitionRegistry);
-        reader.loadBeanDefinitions("classpath:beans0401.xml");
+        reader.loadBeanDefinitions("classpath:beans0501.xml");
         return (BeanFactory) beanDefinitionRegistry;
     }
 }
