@@ -5,4 +5,5 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="tomAccountService" class="com.tom.srccode.deep.analysis.chapter0501.beans.TomAccountService" init-method="myInitMethod" />
+    <bean id="tomBeanPostProcessor" class="com.tom.srccode.deep.analysis.chapter0501.postprocessors.TomInstantiationAwareBeanPostProcessor" />
 </beans>

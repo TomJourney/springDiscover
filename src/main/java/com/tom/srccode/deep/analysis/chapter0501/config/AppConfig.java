@@ -1,6 +1,7 @@
 package com.tom.srccode.deep.analysis.chapter0501.config;
 
 import com.tom.srccode.deep.analysis.chapter0501.beans.TomAccountService;
+import com.tom.srccode.deep.analysis.chapter0501.postprocessors.TomInstantiationAwareBeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
