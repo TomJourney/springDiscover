@@ -24,6 +24,10 @@ public class TomAccountService implements ApplicationContextAware, EnvironmentAw
     private ApplicationContext applicationContext;
     private Environment environment;
 
+    public TomAccountService() {
+        log.info("TomAccountService示例被创建");
+    }
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
