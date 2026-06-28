@@ -18,7 +18,11 @@
         </property>
     </bean>
 
+
+    <!-- BeanFactory PostProcessor -->
     <bean name="tomBeanFactoryPostProcessor" class="com.tom.srccode.deep.analysis.chapter0501.postprocessors.TomBeanFactoryPostProcessor" />
+
+    <bean name="tomEventListener" class="com.tom.srccode.deep.analysis.chapter0501.event.TomEventListener" />
 
     <bean id="tomAccountService" class="com.tom.srccode.deep.analysis.chapter0501.beans.TomAccountService" init-method="myInitMethod" >
         <property name="birthday" value="2026-01-01"/>

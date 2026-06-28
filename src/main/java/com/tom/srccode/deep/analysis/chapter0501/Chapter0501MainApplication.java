@@ -1,6 +1,7 @@
 package com.tom.srccode.deep.analysis.chapter0501;
 
 import com.tom.srccode.deep.analysis.chapter0501.beans.TomAccountService;
+import com.tom.srccode.deep.analysis.chapter0501.event.TomEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,5 +20,8 @@ public class Chapter0501MainApplication {
         TomAccountService tomAccountService = applicationContext.getBean("tomAccountService", TomAccountService.class);
         System.out.println(tomAccountService.getTestStr());
         log.info("tomAccountService = {}", tomAccountService);
+
+        // 发布 TomEvent时间
+        applicationContext.publishEvent(new TomEvent("hello", "world"));
     }
 }
