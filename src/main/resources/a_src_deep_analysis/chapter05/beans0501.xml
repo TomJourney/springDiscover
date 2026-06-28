@@ -4,6 +4,25 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="tomAccountService" class="com.tom.srccode.deep.analysis.chapter0501.beans.TomAccountService" init-method="myInitMethod" />
     <bean id="tomBeanPostProcessor" class="com.tom.srccode.deep.analysis.chapter0501.postprocessors.TomInstantiationAwareBeanPostProcessor" />
+
+    <!-- BeanFactoryPostProcessor Bean工厂后置处理器 -->
+    <bean id="msgHandler" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <!-- 属性编辑器 -->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="com.tom.srccode.deep.analysis.chapter0501.propertyeditor.MyDatePropertyEditorRegistrar"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="tomBeanFactoryPostProcessor" class="com.tom.srccode.deep.analysis.chapter0501.postprocessors.TomBeanFactoryPostProcessor" />
+
+    <bean id="tomAccountService" class="com.tom.srccode.deep.analysis.chapter0501.beans.TomAccountService" init-method="myInitMethod" >
+        <property name="birthday" value="2026-01-01"/>
+        <property name="name" value="tomSpring"/>
+    </bean>
+
 </beans>

@@ -1,14 +1,19 @@
 package com.tom.srccode.deep.analysis.chapter0501.beans;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
+
+import java.util.Date;
 
 /**
  * @author tom
@@ -23,6 +28,8 @@ public class TomAccountService implements ApplicationContextAware, EnvironmentAw
     private String testStr = "tom test";
     private ApplicationContext applicationContext;
     private Environment environment;
+    private Date birthday;
+    private String name;
 
     public TomAccountService() {
         log.info("TomAccountService示例被创建");
@@ -32,6 +39,8 @@ public class TomAccountService implements ApplicationContextAware, EnvironmentAw
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
         log.info("applicationContext-装配完成");
+
+        PropertyPlaceholderConfigurer propertyPlaceholderConfigurer;
     }
 
     @Override
@@ -48,5 +57,22 @@ public class TomAccountService implements ApplicationContextAware, EnvironmentAw
 
     public void myInitMethod() {
         log.info("myInitMethod()方法触发");
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "TomAccountService{" +
+                "testStr='" + testStr + '\'' +
+                ", birthday=" + birthday +
+                ", name=" + name +
+                '}';
     }
 }
